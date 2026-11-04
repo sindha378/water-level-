@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Water Tank Monitoring</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    
+<header class="main-header">
+    <div class="header-content">
+        <h1>💧 Smart Water Tank Monitoring & Prediction System</h1>
+        <p>Monitor • Predict • Control</p>
+    </div>
+
+    <div class="auth-buttons">
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="login.html?mode=signup" class="signup-btn">Sign Up</a>
+    </div>
+</header>
+
+    <!-- =========================
+            TANK SECTION
+    ========================= -->
+
+    <div class="tank-section">
+
+        <!-- TANK A -->
+        <div class="card">
+
+            <h2>Tank A</h2>
+
+            <div class="tank">
+                <div class="water" id="tankA"></div>
+            </div>
+
+            <h3 id="tankAPercent">19%</h3>
+
+            <p id="tankALiters">
+                Current Water : 190 L
+            </p>
+
+            <div class="status normal" id="tankAStatus">
+                🟢 Normal
+            </div>
+
+            <label class="switch">
+                <input type="checkbox"
+                       id="autoA"
+                       checked
+                       onchange="toggleAutoFillA()">
+                <span class="slider"></span>
+            </label>
+
+            <p>Auto Fill</p>
+
+        </div>
+
+        <!-- TANK B -->
+        <div class="card">
+
+            <h2>Tank B</h2>
+
+            <div class="tank">
+                <div class="water" id="tankB"></div>
+            </div>
+
+            <h3 id="tankBPercent">15%</h3>
+
+            <p id="tankBLiters">
+                Current Water : 150 L
+            </p>
+
+            <div class="status low" id="tankBStatus">
+                🔴 Low Level
+            </div>
+
+            <label class="switch">
+                <input type="checkbox"
+                       id="autoB"
+                       checked
+                       onchange="toggleAutoFillB()">
+                <span class="slider"></span>
+            </label>
+
+            <p>Auto Fill</p>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+            ANALYTICS
+    ========================= -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <h4>Tank A Fill Time</h4>
+            <h2 id="tankATime">--</h2>
+        </div>
+
+        <div class="stat-card">
+            <h4>Tank B Fill Time</h4>
+            <h2 id="tankBTime">--</h2>
+        </div>
+
+        <div class="stat-card">
+            <h4>System Status</h4>
+            <h2 id="systemStatus">Running</h2>
+        </div>
+
+    </div>
+
+    <!-- =========================
+            SMART PREDICTION
+    ========================= -->
+
+    <div class="card full-width">
+
+        <h2>Smart Prediction</h2>
+
+        <!-- Tank A Prediction -->
+
+        <h3>Tank A Prediction</h3>
+
+        <div class="prediction-grid">
+
+            <div>
+                <span>Current Level</span>
+                <h3 id="currentLevelA">--</h3>
+            </div>
+
+            <div>
+                <span>Target Level</span>
+                <h3>95%</h3>
+            </div>
+
+            <div>
+                <span>Remaining</span>
+                <h3 id="remainingA">--</h3>
+            </div>
+
+            <div>
+                <span>Estimated Time</span>
+                <h3 id="timeA">--</h3>
+            </div>
+
+            <div>
+                <span>Expected Full Time</span>
+                <h3 id="fullTimeA">--</h3>
+            </div>
+
+            <div>
+    <span>Fill Rate</span>
+    <h3 id="rateA">--</h3>
+</div>
+
+        </div>
+
+        <br><br>
+
+        <!-- Tank B Prediction -->
+
+        <h3>Tank B Prediction</h3>
+
+        <div class="prediction-grid">
+
+            <div>
+                <span>Current Level</span>
+                <h3 id="currentLevelB">--</h3>
+            </div>
+
+            <div>
+                <span>Target Level</span>
+                <h3>95%</h3>
+            </div>
+
+            <div>
+                <span>Remaining</span>
+                <h3 id="remainingB">--</h3>
+            </div>
+
+            <div>
+                <span>Estimated Time</span>
+                <h3 id="timeB">--</h3>
+            </div>
+
+            <div>
+                <span>Expected Full Time</span>
+                <h3 id="fullTimeB">--</h3>
+            </div>
+            <div>
+                 <span>Fill Rate</span>
+                 <h3 id="rateB">--</h3>
+             </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+            COMPARISON
+    ========================= -->
+
+    <div class="card full-width">
+
+        <h2>Tank Level Comparison</h2>
+
+        <div class="bar-row">
+
+            <span>Tank A</span>
+
+            <div class="bar">
+                <div class="fill"
+                     id="tankABar"
+                     style="width:19%">
+                </div>
+            </div>
+
+            <span id="tankACompare">19%</span>
+
+        </div>
+
+        <div class="bar-row">
+
+            <span>Tank B</span>
+
+            <div class="bar">
+                <div class="fill blue"
+                     id="tankBBar"
+                     style="width:15%">
+                </div>
+            </div>
+
+            <span id="tankBCompare">15%</span>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+            SYSTEM OVERVIEW
+    ========================= -->
+
+    <div class="card full-width">
+
+        <h2>System Overview</h2>
+
+        <div class="prediction-grid">
+
+            <div>
+                <span>Tank A Status</span>
+                <h3 id="statusA">🟢 Normal</h3>
+            </div>
+
+            <div>
+                <span>Tank B Status</span>
+                <h3 id="statusB">🔴 Low</h3>
+            </div>
+
+            <div>
+                <span>Auto Fill A</span>
+                <h3 id="autoStatusA">ON</h3>
+            </div>
+
+            <div>
+                <span>Auto Fill B</span>
+                <h3 id="autoStatusB">ON</h3>
+            </div>
+
+            <div>
+                <span>Operating Range</span>
+                <h3>20% - 80%</h3>
+            </div>
+
+            <div>
+                <span>Mode</span>
+                <h3>Smart Auto Fill</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
